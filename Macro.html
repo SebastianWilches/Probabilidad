@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Probabilidad 020-81</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!--CSS-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="javascript.js"></script>
+<!--JS-->
+<!--MathJax-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<style>
+    body {
+        font-family: "Lato", sans-serif
+    }
+
+    .mySlides {
+        display: none
+    }
+</style>
+
+
+<body>
+
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+                href="javascript:void(0)" onclick="" title="Toggle Navigation Menu"><i
+                    class="fa fa-bars"></i></a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large">Probabilidad 020-81</a>
+            <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i
+                    class="fa fa-search"></i></a>
+        </div>
+    </div>
+
+
+
+    <!-- Page content -->
+    <div class="">
+        <div class="w3-content w3-card-4 style=" max-width:2000px;margin-top:46px">
+
+            <div class="w3-container w3-content w3-center w3-padding-64 " style="max-width:800px" id="Ejercicio">
+                <h1 class="w3-wide">Distribuciones discretas</h1>
+                <h2>DISTRIBUCIÓN HIPERGEOMETRICA</h2>
+                <p class="w3-opacity"><i>Jhoan Sebastian Wilches Jimenez<br>20181020175</i></p>
+
+                <p class="w3-justify">
+                    La distribución hipergeométrica suele aparecer en procesos muestrales sin reemplazo, en los
+                    que se investiga la presencia o ausencia de cierta característica.<br>
+                    Como en el caso de la distribución binomial, la distribución hipergeométrica se aplica en
+                    el muestreo de aceptación, donde se toman muestras del material o las partes de los lotes
+                    con el fin de determinar si se acepta o no el lote completo.
+                    Esta distribucion se representa mediante la siguiente expresión matematica:</p>
+
+
+                <p>\[P(X)={\frac{\begin{pmatrix}
+                    k\\
+                    x
+                    \end{pmatrix}\cdot \begin{pmatrix}
+                    N-k\\
+                    n-x
+                    \end{pmatrix}}{\begin{pmatrix}
+                    N\\
+                    n
+                    \end{pmatrix}}}\]</p>
+                <p>
+                    Donde \[N= Número\, total\, de\, la\, población\]
+                    \[k= Número\, exitos\, de\, la\, población\]
+                    \[n= Número\, de\, la\, muestra\]
+                    \[x= Número\, de\, exitos\, de\, la\, muestra\]
+                </p>
+                <br>
+
+
+
+                <h2 class="w3-left-align w3-text-green">Ejercicio 3.109</h2>
+                <p class="w3-opacity w3-left-align">(Wackerly, S. R., & Mendenhall, W. (2009). Estadística matemática
+                    con aplicaciones. 7e. Cengage Learning Editores S.A. de C.V. Pág. 129 Ejemplo 3.109)</p>
+
+                <p class="w3-justify">Es frecuente que las semillas sean tratadas con fungicidas para protegerlas en
+                    ambientes húmedos y con
+                    desecación defectuosa. Un intento a pequeña escala, que comprende un número especifico de semillas
+                    tratadas (N1) y no tratadas (N2),
+                    fue realizado antes de un experimento a gran escala para explorar cuánto fungicida aplicar.<br>
+                    Las semillas se plantaron en un suelo húmedo y se contó el número de plantas que brotaron. Si la
+                    solución
+                    no era efectiva y solo las siguientes plantas brotaron en realidad (n). ¿Cual es la probabilidad de
+                    que sucedan los siguientes hechos?<br><br>
+                    A) Las cuatro plantas brotaran de semillas tratadas.<br>
+                    B) Tres o menos brotaran de semillas tratadas.<br>
+                    C) Al menos una brotara de semillas no tratadas.<br><br>
+                </p>
+
+                <div class="w3-row">
+                    <div class="w3-half">
+                        <p>Semillas tratadas (N1)</p>
+                    </div>
+                    <div class="w3-half"><input required min="0" class="w3-input w3-border" type="number"
+                            placeholder="Semillas tratadas" required id="Tratadas" name="Tratadas"></div>
+                </div>
+
+                <div class="w3-row">
+                    <div class="w3-half">
+                        <p>Semillas NO tratadas (N2)</p>
+                    </div>
+                    <div class="w3-half"><input required min="0" class="w3-input w3-border" type="number"
+                            placeholder="Semillas NO tratadas" required id="NOtratadas" name="NOtratadas"></div>
+                </div>
+
+                <div class="w3-row">
+                    <div class="w3-half">
+                        <p>Plantas que si crecieron (n)</p>
+                    </div>
+                    <div class="w3-half"><input required min="0" class="w3-input w3-border" type="number"
+                            placeholder="Plantas" required id="ExitoPlantas" name="ExitoPlantas"></div>
+                </div>
+
+
+                <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="band">
+                    <button class="w3-button w3-green" onclick="calcular()">Calcular</button>
+                </div>
+
+
+                <div class="w3-card-2" style="display: none;" id="Respuestas">
+                    <div class="w3-container w3-amber w3-margin-top">
+                        <h4><b>Resultado</b></h4>
+                    </div>
+                    <div class="w3-container w3-center w3-margin-top" style="max-width:800px">
+                        <!--PUNTOA-->
+                        <div class="w3-container w3-center w3-margin-top" style="max-width:800px">
+                            <p><b>PUNTO A: </b>Al resolver el problema mediante la distribución hipergeometrica tenemos
+                                que:</p>
+                            <div id="PuntoAOutput"></div>
+                            <input class="w3-input w3-border" type="text" placeholder="Punto A" required
+                                name="ResultadoA" id="ResultadoA">
+                        </div>
+
+                        <!--PUNTO B-->
+                        <div class="w3-container w3-center w3-margin-top" style="max-width:800px">
+                            <p><b>PUNTO B: </b>La probabilidad de que tres o menos semillas brotaran, se comprende con
+                                la siguiente
+                                sumatoria de la distribución hipergeométrica</p>
+                            <div id="PuntoBOutput"></div>
+                            <input class="w3-input w3-border" type="text" placeholder="Punto B" required
+                                name="ResultadoB" id="ResultadoB" readonly>
+                        </div>
+
+                        <!--PUNTO C-->
+                        <div class="w3-container w3-center w3-margin-top" style="max-width:800px">
+                            <p><b>PUNTO C: </b>Sea \(Y\) el numero de plantas brotadas de semillas no tratadas, entonces
+                                \(X+Y=4\), por
+                                tanto la probabilidad de que al menos una planta brotara de una semilla no tratada es
+                                igual a </p>
+                            <p>\(P(\geq 1) = P(4-x\geq 1) = P(-x\geq-3)=P(x\leq 3)\)</p>
+                            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Punto C"
+                                required name="ResultadoC" id="ResultadoC" readonly>
+                            <div id="PuntoCOutput"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

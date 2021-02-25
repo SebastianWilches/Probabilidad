@@ -7,13 +7,20 @@
 <!--CSS-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script type="text/javascript" src="javascript.js"></script>
 <!--JS-->
+<script type="text/javascript" src="javascript.js"></script>
+<script type="text/javascript" src="graficas.js"></script>
 <!--MathJax-->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <!--GoogleIcons-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!--Graficas-->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/dataviz.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/kelly.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 
 
 
@@ -25,6 +32,16 @@
 
     .mySlides {
         display: none
+    }
+
+    #chartdiv {
+        width: 100%;
+        height: 150px;
+    }
+
+    #chartdiv2 {
+        width: 100%;
+        height: 150px;
     }
 </style>
 
@@ -99,23 +116,24 @@
                 <p class="w3-opacity w3-left-align">Wackerly, S. R., & Mendenhall, W. (2009). Estadística matemática
                     con aplicaciones. 7e. Cengage Learning Editores S.A. de C.V. Pág. 129 Ejemplo 3.109</p>
 
-                
 
 
-<!--TEST-->
-<p class="w3-justify">Es frecuente que las semillas sean tratadas con fungicidas para protegerlas en
-    ambientes húmedos y con
-    desecación defectuosa. Un intento a pequeña escala, que comprende un número especifico de semillas
-    tratadas <input required min="0" type="number"
-    placeholder="Semillas tratadas" required id="Tratadas" name="Tratadas"> y no tratadas <input required min="0" type="number"
-    placeholder="Semillas NO tratadas" required id="NOtratadas" name="NOtratadas">,
-    fue realizado antes de un experimento a gran escala para explorar cuánto fungicida aplicar.<br>
-    Las semillas se plantaron en un suelo húmedo y se contó el número de plantas que brotaron. Si la
-    solución
-    no era efectiva y solo las siguientes plantas brotaron en realidad <input required min="0" type="number"
-    placeholder="Plantas" required id="ExitoPlantas" name="ExitoPlantas">. ¿Cual es la probabilidad de
-    que sucedan los siguientes hechos?<br><br>
-</p>
+
+                <!--TEST-->
+                <p class="w3-justify">Es frecuente que las semillas sean tratadas con fungicidas para protegerlas en
+                    ambientes húmedos y con
+                    desecación defectuosa. Un intento a pequeña escala, que comprende un número especifico de semillas
+                    tratadas <input required min="0" type="number" placeholder="Semillas tratadas" required
+                        id="Tratadas" name="Tratadas" value="5"> y no tratadas <input required min="0" type="number"
+                        placeholder="Semillas NO tratadas" required id="NOtratadas" name="NOtratadas" value="5">,
+                    fue realizado antes de un experimento a gran escala para explorar cuánto fungicida aplicar.<br>
+                    Las semillas se plantaron en un suelo húmedo y se contó el número de plantas que brotaron. Si la
+                    solución
+                    no era efectiva y solo las siguientes plantas brotaron en realidad <input required min="0"
+                        type="number" placeholder="Plantas" required id="ExitoPlantas" name="ExitoPlantas" value="4">.
+                    ¿Cuál es la probabilidad de
+                    que sucedan los siguientes hechos?<br><br>
+                </p>
 
 
 
@@ -123,85 +141,95 @@
 
                 <div>
                     <p><b>A)</b><input input required min="0" type="number" placeholder="ParametroA" required
-                            id="ParametroA" name="ParametroA"> plantas brotaran de semillas tratadas.</p>
+                            id="ParametroA" name="ParametroA" value="4"> plantas brotaran de semillas tratadas.</p>
                 </div>
                 <div>
                     <p><b>B)</b><input input required min="0" type="number" placeholder="ParametroB" required
-                            id="ParametroB" name="ParametroB"> o menos plantas brotaran de semillas tratadas.</p>
+                            id="ParametroB" name="ParametroB" value="3"> o menos plantas brotaran de semillas tratadas.
+                    </p>
                 </div>
                 <div>
                     <p>Ingrese el número de decimales que desea usar: <input required min="1" type="number"
-                                placeholder="Decimales" required id="Decimales" name="Decimales"></p>
+                            placeholder="Decimales" required id="Decimales" name="Decimales" value="4"></p>
                 </div>
-<!--TEST-->
+
+                <p>Por favor modifique los datos del ejericio base</p>
 
 
 
 
 
-                
 
-                    <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="band">
-                        <button class="w3-button w3-green" onclick="calcular()">Calcular</button>
+
+                <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="band">
+                    <button class="w3-button w3-green" onclick="calcular()">Calcular</button>
+                </div>
+
+
+                <div class="w3-card-2" style="display: none;" id="Respuestas">
+                    <div class="w3-container w3-amber w3-margin-top">
+                        <h4><b>Resultado</b></h4>
                     </div>
-
-
-                    <div class="w3-card-2" style="display: none;" id="Respuestas">
-                        <div class="w3-container w3-amber w3-margin-top">
-                            <h4><b>Resultado</b></h4>
-                        </div>
+                    <div class="w3-container w3-center w3-margin-top" style="max-width:800px">
+                        <!--PUNTOA-->
                         <div class="w3-container w3-center w3-margin-top" style="max-width:800px">
-                            <!--PUNTOA-->
-                            <div class="w3-container w3-center w3-margin-top" style="max-width:800px">
-                                <p><b>PUNTO A: </b>Al resolver el problema mediante la distribución hipergeometrica
-                                    tenemos
-                                    que:</p>
-                                <div id="PuntoAOutput"></div>
+                            <p><b>PUNTO A: </b>Al resolver el problema mediante la distribución hipergeometrica
+                                tenemos
+                                que:</p>
+                            <div id="PuntoAOutput"></div>
 
-                                <div class="w3-row w3-green">
-                                    <div class="w3-half ">
-                                        <p>Probabilidad</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Punto A" required
-                                            name="ResultadoA" id="ResultadoA">
-                                    </div>
-                                    <div class="w3-half">
-                                        <p>Probabilidad porcentual</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Punto A - Porcentual"
-                                            required name="ResultadoAPorcentual" id="ResultadoAPorcentual">
-                                    </div>
+                            <div class="w3-row w3-green">
+                                <div class="w3-half ">
+                                    <p>Probabilidad</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Punto A" required
+                                        name="ResultadoA" id="ResultadoA">
+                                </div>
+                                <div class="w3-half">
+                                    <p>Probabilidad porcentual</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Punto A - Porcentual"
+                                        required name="ResultadoAPorcentual" id="ResultadoAPorcentual">
                                 </div>
                             </div>
-
-                            <!--PUNTO B-->
-                            <div class="w3-container w3-center w3-margin-top" style="max-width:800px">
-                                <p><b>PUNTO B: </b>La probabilidad de que tres o menos semillas brotaran, se comprende
-                                    con
-                                    la siguiente
-                                    sumatoria de la distribución hipergeométrica</p>
-                                <div id="PuntoBOutput"></div>
-
-                                <div class="w3-row w3-green">
-                                    <div class="w3-half">
-                                        <p>Probabilidad</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Punto B" required
-                                            name="ResultadoB" id="ResultadoB" readonly>
-                                    </div>
-                                    <div class="w3-half">
-                                        <p>Probabilidad porcentual</p>
-                                        <input class="w3-input w3-border" type="text" placeholder="Punto B porcentual"
-                                            required name="ResultadoBPorcentual" id="ResultadoBPorcentual" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <!--Grafica A-->
+                            <div id="chartdiv"></div>
 
                         </div>
+
+                        <!--PUNTO B-->
+                        <div class="w3-container w3-center w3-margin-top" style="max-width:800px">
+                            <p><b>PUNTO B: </b>La probabilidad de que tres o menos semillas brotaran, se comprende
+                                con
+                                la siguiente
+                                sumatoria de la distribución hipergeométrica</p>
+                            <div id="PuntoBOutput"></div>
+
+                            <div class="w3-row w3-green">
+                                <div class="w3-half">
+                                    <p>Probabilidad</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Punto B" required
+                                        name="ResultadoB" id="ResultadoB" readonly>
+                                </div>
+                                <div class="w3-half">
+                                    <p>Probabilidad porcentual</p>
+                                    <input class="w3-input w3-border" type="text" placeholder="Punto B porcentual"
+                                        required name="ResultadoBPorcentual" id="ResultadoBPorcentual" readonly>
+                                </div>
+                            </div>
+
+                            <!--Grafica B-->
+                            <div id="chartdiv2"></div>
+                        </div>
+
+
                     </div>
+                </div>
 
 
 
 
             </div>
+
+
 
         </div>
     </div>
@@ -213,6 +241,8 @@
         <a href="https://www.mathjax.org" title="MathJax.org" target="_blank" class="w3-hover-opacity"><br>MathJax</a>
         <a href="https://fontawesome.com/v4.7.0/icons/" title="Font Awesome 4" target="_blank"
             class="w3-hover-opacity"><br>Font Awesome 4</a>
+            <a href="https://www.amcharts.com" title="AMCharts" target="_blank"
+            class="w3-hover-opacity"><br>amCharts</a>
 
     </div>
 
